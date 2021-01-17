@@ -7,6 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class OrderRetroClass {
     @SerializedName("records")
     @Expose
     private JsonArray records;
-    public List<Map<String,Object>> mapList;
+    public List<Map<String,Object>> mapList = new ArrayList<>();
 
     public JsonArray getStatus() {
         return records;

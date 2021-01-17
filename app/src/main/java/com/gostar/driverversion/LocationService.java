@@ -116,6 +116,7 @@ public class LocationService extends Service {
             @Override
             public void onResponse(Call<OrderRetroClass> call, Response<OrderRetroClass> response) {
                 OrderRetroClass responseStr = response.body();
+                assert responseStr != null;
                 responseStr.convert();
                 List<Map<String,Object>> map = responseStr.mapList;
                 if (map.get(0).get("address") != null) {
