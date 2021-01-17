@@ -25,6 +25,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.gson.JsonArray;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -114,7 +115,7 @@ public class LocationService extends Service {
         call = service.sendLocation("2","adminDriver",latitude,longitude, String.valueOf(MainActivity.status));
         call.enqueue(new Callback<OrderRetroClass>() {
             @Override
-            public void onResponse(Call<OrderRetroClass> call, Response<OrderRetroClass> response) {
+            public void onResponse(@NotNull Call<OrderRetroClass> call, @NotNull Response<OrderRetroClass> response) {
                 OrderRetroClass responseStr = response.body();
                 assert responseStr != null;
                 responseStr.convert();
