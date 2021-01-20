@@ -32,7 +32,13 @@ import lombok.Getter;
 import lombok.Setter;
 import retrofit2.Call;
 
+
+
+
+
 public class MainActivity extends AppCompatActivity {
+
+
 
     private String username;
     private String name;
@@ -67,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     @Override
@@ -265,7 +272,5 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         return sharedPref.getInt("status",3);
     }
-
-
-
+//    hhhhh
 }
