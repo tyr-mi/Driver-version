@@ -194,6 +194,119 @@
                 android:text="-"
                 android:textColor="@color/black"/>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/package_detail_destination2_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:text="مقصد2 : "
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/package_detail_destination_tv" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/package_detail_destination2_address_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="7dp"
+                android:gravity="right"
+                android:text="-"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/package_detail_destination2_tv"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/package_detail_destination2_tv"
+                app:layout_constraintTop_toTopOf="@id/package_detail_destination2_tv" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/package_detail_destination3_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:text="مقصد3 : "
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/package_detail_destination2_tv" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/package_detail_destination3_address_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="7dp"
+                android:gravity="right"
+                android:text="-"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/package_detail_destination3_tv"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/package_detail_destination3_tv"
+                app:layout_constraintTop_toTopOf="@id/package_detail_destination3_tv" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/package_detail_destination4_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="15dp"
+                android:text="مقصد4 : "
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/package_detail_destination3_tv" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/package_detail_destination4_address_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="7dp"
+                android:gravity="right"
+                android:text="-"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/package_detail_destination4_tv"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/package_detail_destination4_tv"
+                app:layout_constraintTop_toTopOf="@id/package_detail_destination4_tv" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/accept_package_bt"
+                android:layout_width="72dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="110dp"
+                android:text="پذیرش"
+                android:textColor="@color/black"
+                android:textSize="8sp"
+                android:visibility="visible"
+                app:backgroundTint="#4CAF50"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/package_detail_destination3_tv" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/decline_package_bt"
+                android:layout_width="72dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="110dp"
+                android:layout_marginRight="7dp"
+                android:gravity="right"
+                android:text="رد کردن"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="8sp"
+                app:backgroundTint="#E91E63"
+                app:layout_constraintBottom_toBottomOf="@id/accept_package_bt"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/accept_package_bt"
+                app:layout_constraintTop_toTopOf="@id/accept_package_bt" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>

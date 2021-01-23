@@ -36,6 +36,7 @@ import retrofit2.Call;
 
 
 
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -272,5 +273,5 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         return sharedPref.getInt("status",3);
     }
-//    hhhhh
+
 }

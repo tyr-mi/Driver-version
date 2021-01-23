@@ -167,7 +167,7 @@ class GpsTracker extends Service implements LocationListener {
 
     /**
      * Function to show settings alert dialog
-     * On pressing Settings button will lauch Settings Options
+     * On pressing Settings button will launch Settings Options
      * */
 
     public void showSettingsAlert(){
