@@ -111,8 +111,8 @@ public class LocationService extends Service {
     }
 
     private void sendLocationToServer() {
-
-        call = service.sendLocation("2","adminDriver",latitude,longitude, String.valueOf(MainActivity.status));
+        SendLocation sendLoc =new SendLocation("2",String.valueOf(MainActivity.username),latitude,longitude, String.valueOf(MainActivity.status));
+        call = service.sendLocation(sendLoc);
         call.enqueue(new Callback<OrderRetroClass>() {
             @Override
             public void onResponse(@NotNull Call<OrderRetroClass> call, @NotNull Response<OrderRetroClass> response) {

@@ -57,20 +57,26 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        loginBtn.setOnClickListener(new View.OnClickListener()
+        {
             @Override
             public void onClick(View v) {
-                if (!usernameEt.getText().toString().trim().equals("")) {
-                    if (!passwordEt.getText().toString().trim().equals("")) {
+                if (!usernameEt.getText().toString().trim().equals(""))
+                {
+                    if (!passwordEt.getText().toString().trim().equals(""))
+                    {
 
+                        CheckLogin check_login=new CheckLogin("6",usernameEt.getText().toString().trim(),passwordEt.getText().toString().trim());
+                        call = service.checkLogin(check_login);
 
-                        call = service.checkLogin("6",usernameEt.getText().toString().trim(),passwordEt.getText().toString().trim());
-
-                        call.enqueue(new Callback<Retro>() {
+                        call.enqueue(new Callback<Retro>()
+                        {
                             @Override
-                            public void onResponse(Call<Retro> call, Response<Retro> response) {
+                            public void onResponse(Call<Retro> call, Response<Retro> response)
+                            {
                                 Retro responseStr = response.body();
-                                if (responseStr.getStatus() == 1 ) {
+                                if (responseStr.getStatus() == 1 )
+                                {
                                     realm.beginTransaction();
                                     realm.deleteAll();
                                     UserDbClass user = realm.createObject(UserDbClass.class);
@@ -83,14 +89,16 @@ public class LoginActivity extends AppCompatActivity {
                             }
 
                             @Override
-                            public void onFailure(Call<Retro> call, Throwable t) {
+                            public void onFailure(Call<Retro> call, Throwable t)
+                            {
                                 t.printStackTrace();
                                 t.getLocalizedMessage();
                             }
 
                         });
 
-                    } else {
+                    }
+                    else {
                         Toast.makeText(getApplicationContext(),"گذرواژه خالی است." , Toast.LENGTH_LONG).show();
 
                     }
