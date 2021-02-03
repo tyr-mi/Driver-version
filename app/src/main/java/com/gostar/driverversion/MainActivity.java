@@ -1,9 +1,5 @@
 package com.gostar.driverversion;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -11,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.material.button.MaterialButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -26,13 +25,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.realm.Realm;
 import io.realm.RealmResults;
-import kotlin.collections.DoubleIterator;
 import lombok.Getter;
 import lombok.Setter;
 import retrofit2.Call;
-
-import cn.pedant.SweetAlert.SweetAlertDialog;
-import android.graphics.Color;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -93,26 +88,6 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        new SweetAlertDialog(MainActivity.this, SweetAlertDialog.NORMAL_TYPE)
-                .setTitleText("مایل به پذیرش هستید؟")
-                .setContentText("You won't be able to recover this filecbmhvxbj\n\n hfhfh\nhgdjhgdjgdfj\ngfhsgfdhgsdfhdgfhg\nghsdgfhgdhdd")
-                .setConfirmText("پذیرش")
-                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sDialog) {
-                        sDialog.dismissWithAnimation();
-                    }
-                })
-                .setCancelButton("بعدی", new SweetAlertDialog.OnSweetClickListener() {
-                    @Override
-                    public void onClick(SweetAlertDialog sDialog) {
-                        sDialog.dismissWithAnimation();
-                    }
-                })
-                .show();
-
-
-
     }
 
     @Override

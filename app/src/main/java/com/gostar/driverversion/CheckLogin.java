@@ -9,7 +9,7 @@ public class CheckLogin
     @Required
     @Getter
     @Setter
-    private String req_id;
+    private String id;
     @Required
     @Getter
     @Setter
@@ -18,11 +18,17 @@ public class CheckLogin
     @Getter
     @Setter
     private String password;
+    @Required
+    @Getter
+    @Setter
+    private String title;
+
     CheckLogin(String id, String username, String password)
         {
-            this.req_id = id;
+            this.id = id;
             this.username = username;
             this.password = password;
+            this.title = "user";
         }
 
 
