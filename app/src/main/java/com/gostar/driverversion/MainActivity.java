@@ -255,23 +255,23 @@ public class MainActivity extends AppCompatActivity {
             }
             setStatusSharedPreference(status);
         });
-        accept_Bt.setOnClickListener(v -> {
-
-            if (!isWorking) {
-                setWorkSharedPreference(true);
-                shiftCv.setCardBackgroundColor(getColor(R.color.red));
-                shiftTv.setText("پایان");
-                status = 1;
-                isWorking = true;
-            } else {
-                setWorkSharedPreference(false);
-                shiftCv.setCardBackgroundColor(getColor(R.color.green));
-                shiftTv.setText("شروع");
-                status = 3;
-                isWorking = false;
-            }
-            setStatusSharedPreference(status);
-        });
+//        accept_Bt.setOnClickListener(v -> {
+//
+//            if (!isWorking) {
+//                setWorkSharedPreference(true);
+//                shiftCv.setCardBackgroundColor(getColor(R.color.red));
+//                shiftTv.setText("پایان");
+//                status = 1;
+//                isWorking = true;
+//            } else {
+//                setWorkSharedPreference(false);
+//                shiftCv.setCardBackgroundColor(getColor(R.color.green));
+//                shiftTv.setText("شروع");
+//                status = 3;
+//                isWorking = false;
+//            }
+//            setStatusSharedPreference(status);
+//        });
 
         packageDeliverCv.setOnClickListener(v -> {
             status = 1;

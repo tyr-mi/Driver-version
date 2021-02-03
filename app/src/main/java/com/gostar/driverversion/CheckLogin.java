@@ -9,25 +9,25 @@ public class CheckLogin
     @Required
     @Getter
     @Setter
-    private String id;
+    private int id;
     @Required
     @Getter
     @Setter
-    private String username;
+    private String user;
     @Required
     @Getter
     @Setter
-    private String password;
+    private String pass;
     @Required
     @Getter
     @Setter
     private String title;
 
-    CheckLogin(String id, String username, String password)
+    CheckLogin(int id, String username, String password)
         {
             this.id = id;
-            this.username = username;
-            this.password = password;
+            this.user = username;
+            this.pass = password;
             this.title = "user";
         }
 
