@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         restaurantNameTv = findViewById(R.id.package_restaurant_detail_tv);
         phoneNumberTv = findViewById(R.id.package_phoneNumber_detail_tv);
         costTv = findViewById(R.id.package_detail_cost_tv);
+        accept_Bt = findViewById(R.id.accept_package_bt);
 
         setWorkSharedPreference(false);
         setStatusSharedPreference(3);
@@ -255,23 +256,23 @@ public class MainActivity extends AppCompatActivity {
             }
             setStatusSharedPreference(status);
         });
-//        accept_Bt.setOnClickListener(v -> {
-//
-//            if (!isWorking) {
-//                setWorkSharedPreference(true);
-//                shiftCv.setCardBackgroundColor(getColor(R.color.red));
-//                shiftTv.setText("پایان");
-//                status = 1;
-//                isWorking = true;
-//            } else {
-//                setWorkSharedPreference(false);
-//                shiftCv.setCardBackgroundColor(getColor(R.color.green));
-//                shiftTv.setText("شروع");
-//                status = 3;
-//                isWorking = false;
-//            }
-//            setStatusSharedPreference(status);
-//        });
+        accept_Bt.setOnClickListener(v -> {
+
+            if (!isWorking) {
+                setWorkSharedPreference(true);
+                shiftCv.setCardBackgroundColor(getColor(R.color.red));
+                shiftTv.setText("پایان");
+                status = 1;
+                isWorking = true;
+            } else {
+                setWorkSharedPreference(false);
+                shiftCv.setCardBackgroundColor(getColor(R.color.green));
+                shiftTv.setText("شروع");
+                status = 3;
+                isWorking = false;
+            }
+            setStatusSharedPreference(status);
+        });
 
         packageDeliverCv.setOnClickListener(v -> {
             status = 1;
@@ -297,27 +298,27 @@ public class MainActivity extends AppCompatActivity {
             .subscribeWith(new DisposableObserver<List<Map<String, Object>>>() {
                 @Override
                 public void onNext(@NonNull List<Map<String, Object>> maps) {
-                    if (!receivedOrder) {
-                        RealmResults<OrderDbClass> result = realm.where(OrderDbClass.class).findAll();
-                        if (result.size() > 0) {
-                            realm.beginTransaction();
-                            realm.delete(OrderDbClass.class);
-                            realm.commitTransaction();
-                        }
-                        setStatusSharedPreference(2);
-                        status = 2;
-                        locationTv.setText(String.valueOf(maps.get(0).get("address")));
-                        destinationTv.setText(String.valueOf(maps.get(0).get("destination")));
-                        packageDeliverCv.setVisibility(View.VISIBLE);
-                        receivedOrder = true;
+
+                    RealmResults<OrderDbClass> result = realm.where(OrderDbClass.class).findAll();
+                    if (result.size() > 0) {
                         realm.beginTransaction();
-                        OrderDbClass order = realm.createObject(OrderDbClass.class);
-                        order.setRestaurantAddress(String.valueOf(maps.get(0).get("restaurant_address")));
-                        //order.setRestaurantLoc(Double.);
-                        //order.setDestinationsAddress(String.valueOf(maps.get(0).get("destination")));
-                        order.setName(String.valueOf(maps.get(0).get("name")));
+                        realm.delete(OrderDbClass.class);
                         realm.commitTransaction();
                     }
+                    setStatusSharedPreference(2);
+                    status = 2;
+                    locationTv.setText(String.valueOf(maps.get(0).get("address")));
+                    destinationTv.setText(String.valueOf(maps.get(0).get("destination")));
+                    packageDeliverCv.setVisibility(View.VISIBLE);
+                    receivedOrder = true;
+                    realm.beginTransaction();
+                    OrderDbClass order = realm.createObject(OrderDbClass.class);
+                    order.setRestaurantAddress(String.valueOf(maps.get(0).get("restaurant_address")));
+                    //order.setRestaurantLoc(Double.);
+                    //order.setDestinationsAddress(String.valueOf(maps.get(0).get("destination")));
+                    order.setName(String.valueOf(maps.get(0).get("name")));
+                    realm.commitTransaction();
+
 
                 }
 

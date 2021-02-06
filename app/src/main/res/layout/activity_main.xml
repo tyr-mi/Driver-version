@@ -381,29 +381,30 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/accept_package_bt"
-                android:layout_width="72dp"
-                android:layout_height="35dp"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginRight="110dp"
+
                 android:text="پذیرش"
+                app:cornerRadius="25dp"
                 android:textColor="@color/black"
-                android:textSize="8sp"
+                android:textSize="20sp"
                 android:visibility="visible"
                 app:backgroundTint="#4CAF50"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/package_phoneNumber_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/package_phoneNumber_tv"
+                app:layout_constraintLeft_toRightOf="@id/decline_package_bt"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/decline_package_bt"
-                android:layout_width="72dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="110dp"
-                android:layout_marginRight="7dp"
-                android:gravity="right"
+                android:layout_width="140dp"
+                android:layout_height="60dp"
+
                 android:text="رد کردن"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="8sp"
+                app:cornerRadius="25dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
                 app:backgroundTint="#E91E63"
                 app:layout_constraintBottom_toBottomOf="@id/accept_package_bt"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -417,6 +418,7 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/package_deliver"
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent">
@@ -441,6 +443,28 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/next_order_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/previous_order_btn"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/previous_order_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+
+        android:rotationY="-180"
+        android:src="@drawable/ic_forward"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/next_order_btn" />
+
+
 
 
 

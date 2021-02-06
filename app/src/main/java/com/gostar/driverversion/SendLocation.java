@@ -19,6 +19,11 @@ public class SendLocation
     @Required
     @Getter
     @Setter
+    private String pass;
+
+    @Required
+    @Getter
+    @Setter
     private Double lat;
 
     @Required
@@ -26,17 +31,14 @@ public class SendLocation
     @Setter
     private Double lon;
 
-    @Required
-    @Getter
-    @Setter
-    private String status;
-    SendLocation(String id, String user, Double lat, Double lon, String status)
+
+    SendLocation(String id, String user, Double lat, Double lon)
     {
         this.id=id;
         this.user=user;
         this.lat=lat;
         this.lon=lon;
-        this.status=status;
+        this.pass = "admin";
     }
 
 }
