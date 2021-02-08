@@ -2,6 +2,7 @@ package com.gostar.driverversion;
 
 import android.app.Application;
 import android.content.Intent;
+import androidx.core.content.ContextCompat;
 
 import io.github.inflationx.calligraphy3.CalligraphyConfig;
 import io.github.inflationx.calligraphy3.CalligraphyInterceptor;
@@ -29,7 +30,7 @@ public class App extends Application {
                                 .build()))
                 .build());
 
-        startService(new Intent(this, LocationService.class));
+         ContextCompat.startForegroundService(App.this, new Intent(this, LocationService.class));
 
     }
 
