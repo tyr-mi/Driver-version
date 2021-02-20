@@ -87,4 +87,14 @@ public class OrderDbClass extends RealmObject {
     @Setter
     public String restaurantName;
 
+    @Required
+    @Getter
+    @Setter
+    public String lon;
+
+    @Required
+    @Getter
+    @Setter
+    public String lat;
+
 }

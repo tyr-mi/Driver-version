@@ -1,0 +1,154 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:src="@drawable/ic_motorcycle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_name_text_input"
+        style="@style/MainTextInputLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="10dp"
+
+        android:hint="نام"
+        android:textColorHint="@android:color/holo_blue_light"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/login_username_text_input">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_username_text_input"
+        style="@style/MainTextInputLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:hint="نام کاربری"
+        android:textColorHint="@android:color/holo_blue_light"
+        android:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_username_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_password_text_input"
+        style="@style/MainTextInputLayout"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/login_username_text_input"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:hint="تلفن تماس"
+        android:textColorHint="@android:color/holo_blue_light"
+        android:visibility="visible">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/login_button_card_view"
+        android:layout_width="170dp"
+        android:layout_height="45dp"
+        app:cardBackgroundColor="@android:color/holo_blue_bright"
+        app:layout_constraintTop_toBottomOf="@id/login_password_text_input"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="80dp"
+        app:cardCornerRadius="15dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/login_button_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ثبت نام"
+                android:textColor="@android:color/white"
+                android:textSize="23sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_login"
+                app:layout_constraintTop_toTopOf="@id/login_button_text"
+                app:layout_constraintBottom_toBottomOf="@id/login_button_text"
+                app:layout_constraintLeft_toRightOf="@id/login_button_text"
+                android:layout_marginStart="10dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+
+    <RadioGroup
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/login_name_text_input"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp">
+
+        <RadioButton
+
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="حمل نفر" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="حمل غذا" />
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

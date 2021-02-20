@@ -117,10 +117,13 @@ public class LocationService extends Service {
             @Override
             public void onResponse(@NotNull Call<OrderRetroClass> call, @NotNull Response<OrderRetroClass> response) {
                 OrderRetroClass responseStr = response.body();
+                if (response.errorBody() != null) {
+                    return;
+                }
                 assert responseStr != null;
                 responseStr.convert();
                 List<Map<String,Object>> map = responseStr.mapList;
-                if (map.get(0).get("address") != null) {
+                if (map.get(0) != null && map.get(0).get("address") != null) {
                     orderDetail.onNext(map);
                 }
 
@@ -129,7 +132,7 @@ public class LocationService extends Service {
 
             @Override
             public void onFailure(Call<OrderRetroClass> call, Throwable t) {
-                Toast.makeText(getApplicationContext(),"قادر به به روز رسانی موقعیت شما نیستیم",Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(),"قادر به به روز رسانی موقعیت شما نیستیم",Toast.LENGTH_LONG).show();
             }
         });
 

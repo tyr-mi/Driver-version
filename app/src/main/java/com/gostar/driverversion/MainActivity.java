@@ -11,6 +11,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -28,14 +34,21 @@ import io.realm.RealmResults;
 import lombok.Getter;
 import lombok.Setter;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
 
     public static String username;
     public static String name;
     private String currentTime;
+    private String orderId;
+    private String lon , lat;
+    private int currentOrderIndex = 0;
+
+    private MarkerOptions markerOptions;
 
     private MaterialTextView timeTextView;
     private MaterialTextView usernameTv;
@@ -52,13 +65,17 @@ public class MainActivity extends AppCompatActivity {
     private MaterialTextView restaurantNameTv;
     private MaterialTextView costTv;
     private Button accept_Bt;
+    private Button declinePkg;
 
     private MaterialCardView shiftCv;
     private MaterialCardView packageDeliverCv;
 
 
     private GetDataService service;
-    private Call<Retro> call;
+    private Call<AcceptPackage> call;
+    private Call<FinishOrder> finishCall;
+    private Call<EndShiftRequest> endShiftRequestCall;
+    private Call<StartShiftRequest> startShiftRequestCall;
 
     private Realm realm;
     private RealmResults<UserDbClass> result;
@@ -66,18 +83,12 @@ public class MainActivity extends AppCompatActivity {
     public static boolean isWorking;
     public static int status = 3;
 
-    private boolean has_order;
     private boolean receivedOrder = false;
-    /** Called when the Driver touches the accept button */
-    /**public void accept_clicked(View view)
-    {
-        if(has_order)
-        {
+
+    List<Map<String, Object>> orderData;
 
 
-        }
-        // Do something in response to button click
-    }*/
+    private GoogleMap googleMap;
 
     @Getter
     @Setter
@@ -88,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map_fragment);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
@@ -120,26 +134,27 @@ public class MainActivity extends AppCompatActivity {
         destinationTv = findViewById(R.id.package_detail_destination_address_tv);
 
         //having more than one destination
-        destination2Tv = findViewById(R.id.package_detail_destination2_address_tv);
-        _destination2Tv = findViewById(R.id.package_detail_destination2_tv);
-        destination3Tv = findViewById(R.id.package_detail_destination3_address_tv);
-        _destination3Tv = findViewById(R.id.package_detail_destination3_tv);
-        destination4Tv = findViewById(R.id.package_detail_destination4_address_tv);
-        _destination4Tv = findViewById(R.id.package_detail_destination4_tv);
+//        destination2Tv = findViewById(R.id.package_detail_destination2_address_tv);
+//        _destination2Tv = findViewById(R.id.package_detail_destination2_tv);
+//        destination3Tv = findViewById(R.id.package_detail_destination3_address_tv);
+//        _destination3Tv = findViewById(R.id.package_detail_destination3_tv);
+//        destination4Tv = findViewById(R.id.package_detail_destination4_address_tv);
+//        _destination4Tv = findViewById(R.id.package_detail_destination4_tv);
 
         restaurantNameTv = findViewById(R.id.package_restaurant_detail_tv);
         phoneNumberTv = findViewById(R.id.package_phoneNumber_detail_tv);
         costTv = findViewById(R.id.package_detail_cost_tv);
         accept_Bt = findViewById(R.id.accept_package_bt);
+        declinePkg = findViewById(R.id.decline_package_bt);
 
         setWorkSharedPreference(false);
-        setStatusSharedPreference(3);
+
 
         boolean isWorking = getIsWorkingSharedPreference();
         status = getStatusSharedPreference();
 
 
-        if (isWorking) {
+        if (status == 2 || status == 1) {
 
             changeUI();
             int time = getTimeSharedPreference();
@@ -241,53 +256,134 @@ public class MainActivity extends AppCompatActivity {
 
         shiftCv.setOnClickListener(v -> {
 
-            if (!isWorking) {
-                setWorkSharedPreference(true);
-                shiftCv.setCardBackgroundColor(getColor(R.color.red));
-                shiftTv.setText("پایان");
-                status = 1;
-                isWorking = true;
+            if (status == 3) {
+                StartShiftRequest startShiftRequest = new StartShiftRequest(9,username,"admin");
+                startShiftRequestCall = service.startShift(startShiftRequest);
+                startShiftRequestCall.enqueue(new Callback<StartShiftRequest>() {
+                    @Override
+                    public void onResponse(Call<StartShiftRequest> call, Response<StartShiftRequest> response) {
+                        setWorkSharedPreference(true);
+                        shiftCv.setCardBackgroundColor(getColor(R.color.red));
+                        shiftTv.setText("پایان");
+                        status = 1;
+                        isWorking = true;
+                        setStatusSharedPreference(1);
+                    }
+
+                    @Override
+                    public void onFailure(Call<StartShiftRequest> call, Throwable t) {
+
+                    }
+                });
+
             } else {
-                setWorkSharedPreference(false);
-                shiftCv.setCardBackgroundColor(getColor(R.color.green));
-                shiftTv.setText("شروع");
-                status = 3;
-                isWorking = false;
+
+                EndShiftRequest endShiftRequest = new EndShiftRequest(10,username,"admin");
+                endShiftRequestCall = service.endShift(endShiftRequest);
+                endShiftRequestCall.enqueue(new Callback<EndShiftRequest>() {
+                    @Override
+                    public void onResponse(Call<EndShiftRequest> call, Response<EndShiftRequest> response) {
+                        setWorkSharedPreference(false);
+                        shiftCv.setCardBackgroundColor(getColor(R.color.green));
+                        shiftTv.setText("شروع");
+                        status = 3;
+                        isWorking = false;
+                        setStatusSharedPreference(3);
+                    }
+
+                    @Override
+                    public void onFailure(Call<EndShiftRequest> call, Throwable t) {
+
+                    }
+                });
             }
-            setStatusSharedPreference(status);
         });
         accept_Bt.setOnClickListener(v -> {
+            AcceptPackage acceptPackage = new AcceptPackage("8",username,"admin",orderId);
+            call = service.acceptPackage(acceptPackage);
+            call.enqueue(new Callback<AcceptPackage>() {
+                @Override
+                public void onResponse(Call<AcceptPackage> call, Response<AcceptPackage> response) {
+                    packageDeliverCv.setVisibility(View.VISIBLE);
+                    accept_Bt.setVisibility(View.INVISIBLE);
+                    declinePkg.setVisibility(View.INVISIBLE);
+                    RealmResults<OrderDbClass> result = realm.where(OrderDbClass.class).findAll();
+                    if (result.size() > 0) {
+                        realm.beginTransaction();
+                        realm.delete(OrderDbClass.class);
+                        realm.commitTransaction();
+                    }
+                    setStatusSharedPreference(2);
+                    status = 2;
+                    orderData.get(currentOrderIndex);
+                }
 
-            if (!isWorking) {
-                setWorkSharedPreference(true);
-                shiftCv.setCardBackgroundColor(getColor(R.color.red));
-                shiftTv.setText("پایان");
-                status = 1;
-                isWorking = true;
-            } else {
-                setWorkSharedPreference(false);
-                shiftCv.setCardBackgroundColor(getColor(R.color.green));
-                shiftTv.setText("شروع");
-                status = 3;
-                isWorking = false;
-            }
-            setStatusSharedPreference(status);
+                @Override
+                public void onFailure(Call<AcceptPackage> call, Throwable t) {
+
+                }
+            });
         });
 
         packageDeliverCv.setOnClickListener(v -> {
-            status = 1;
-            setStatusSharedPreference(1);
+
+
             packageDeliverCv.setVisibility(View.INVISIBLE);
             receivedOrder = false;
             locationTv.setText("");
             destinationTv.setText("");
-            RealmResults<OrderDbClass> result = realm.where(OrderDbClass.class).findAll();
-            if (result.size() > 0) {
-                realm.beginTransaction();
-                realm.delete(OrderDbClass.class);
-                realm.commitTransaction();
-            }
+
+            FinishOrder finishOrder = new FinishOrder(15,username,"admin", Integer.parseInt(orderId));
+            finishCall = service.finishOrder(finishOrder);
+            finishCall.enqueue(new Callback<FinishOrder>() {
+                @Override
+                public void onResponse(Call<FinishOrder> call, Response<FinishOrder> response) {
+                    RealmResults<OrderDbClass> result = realm.where(OrderDbClass.class).findAll();
+                    if (result.size() > 0) {
+                        realm.beginTransaction();
+                        realm.delete(OrderDbClass.class);
+                        realm.commitTransaction();
+                    }
+                    accept_Bt.setVisibility(View.VISIBLE);
+                    declinePkg.setVisibility(View.VISIBLE);
+                    googleMap.clear();
+                    StartShiftRequest startShiftRequest = new StartShiftRequest(9,username,"admin");
+                    startShiftRequestCall = service.startShift(startShiftRequest);
+                    startShiftRequestCall.enqueue(new Callback<StartShiftRequest>() {
+                        @Override
+                        public void onResponse(Call<StartShiftRequest> call, Response<StartShiftRequest> response) {
+                            setStatusSharedPreference(1);
+                            status = 1;
+                        }
+
+                        @Override
+                        public void onFailure(Call<StartShiftRequest> call, Throwable t) {
+
+                        }
+                    });
+                }
+
+                @Override
+                public void onFailure(Call<FinishOrder> call, Throwable t) {
+
+                }
+            });
         });
+
+        declinePkg.setOnClickListener(v -> {
+            currentOrderIndex++;
+            locationTv.setText(String.valueOf(orderData.get(currentOrderIndex).get("address")));
+            destinationTv.setText(String.valueOf(orderData.get(currentOrderIndex).get("destination")));
+            lon = (String) orderData.get(currentOrderIndex).get("lon");
+            lat = (String) orderData.get(currentOrderIndex).get("lat");
+            LatLng myLocation = new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
+            googleMap.clear();
+            markerOptions = new MarkerOptions().position(myLocation);
+            googleMap.addMarker(markerOptions);
+            googleMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+            orderId = (String) orderData.get(currentOrderIndex).get("id");
+        });
+
 
 
     }
@@ -299,25 +395,36 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onNext(@NonNull List<Map<String, Object>> maps) {
 
+                    currentOrderIndex = 0;
+                    orderData = maps;
+
                     RealmResults<OrderDbClass> result = realm.where(OrderDbClass.class).findAll();
                     if (result.size() > 0) {
                         realm.beginTransaction();
                         realm.delete(OrderDbClass.class);
                         realm.commitTransaction();
                     }
-                    setStatusSharedPreference(2);
-                    status = 2;
+//                    setStatusSharedPreference(2);
                     locationTv.setText(String.valueOf(maps.get(0).get("address")));
                     destinationTv.setText(String.valueOf(maps.get(0).get("destination")));
-                    packageDeliverCv.setVisibility(View.VISIBLE);
-                    receivedOrder = true;
-                    realm.beginTransaction();
-                    OrderDbClass order = realm.createObject(OrderDbClass.class);
-                    order.setRestaurantAddress(String.valueOf(maps.get(0).get("restaurant_address")));
+                    costTv.setText(String.valueOf(maps.get(0).get("cost")));
+                    lon = (String) maps.get(0).get("lon");
+                    lat = (String) maps.get(0).get("lat");
+                    LatLng myLocation = new LatLng(Double.parseDouble(lat),Double.parseDouble(lon));
+
+                    markerOptions = new MarkerOptions().position(myLocation);
+                    googleMap.clear();
+                    googleMap.addMarker(markerOptions);
+                    googleMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+                    orderId = (String) maps.get(0).get("id");
+//                    receivedOrder = true;
+//                    realm.beginTransaction();
+//                    OrderDbClass order = realm.createObject(OrderDbClass.class);
+//                    order.setRestaurantAddress(String.valueOf(maps.get(0).get("restaurant_address")));
                     //order.setRestaurantLoc(Double.);
                     //order.setDestinationsAddress(String.valueOf(maps.get(0).get("destination")));
-                    order.setName(String.valueOf(maps.get(0).get("name")));
-                    realm.commitTransaction();
+//                    order.setName(String.valueOf(maps.get(0).get("name")));
+//                    realm.commitTransaction();
 
 
                 }
@@ -383,5 +490,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
+//        LatLng myLocation = new LatLng(34.016774, 58.168308);
+//        this.googleMap.addMarker(new MarkerOptions().position(myLocation).title("فردوس").snippet("خراسان جنوبی"));
+//        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+    }
 }
