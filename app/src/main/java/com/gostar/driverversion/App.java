@@ -30,7 +30,7 @@ public class App extends Application {
                                 .build()))
                 .build());
 
-         ContextCompat.startForegroundService(App.this, new Intent(this, LocationService.class));
+        startService(new Intent(this, LocationService.class));
 
     }
 

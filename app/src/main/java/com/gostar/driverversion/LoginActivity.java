@@ -79,6 +79,7 @@ public class LoginActivity extends AppCompatActivity {
                                 UserDbClass user = realm.createObject(UserDbClass.class);
                                 user.setName(responseStr.getStatusMessage());
                                 user.setUsername(usernameEt.getText().toString());
+                                user.setPassword(passwordEt.getText().toString());
                                 realm.commitTransaction();
                                 Intent mainIntent = new Intent(getApplicationContext(),MainActivity.class);
                                 startActivity(mainIntent);

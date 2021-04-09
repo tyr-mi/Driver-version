@@ -111,7 +111,7 @@ public class LocationService extends Service {
     }
 
     private void sendLocationToServer() {
-        SendLocation sendLoc = new SendLocation("7",String.valueOf(MainActivity.username),latitude,longitude);
+        SendLocation sendLoc = new SendLocation("7",String.valueOf(MainActivity.username),latitude,longitude,MainActivity.password);
         call = service.sendLocation(sendLoc);
         call.enqueue(new Callback<OrderRetroClass>() {
             @Override
@@ -123,7 +123,7 @@ public class LocationService extends Service {
                 assert responseStr != null;
                 responseStr.convert();
                 List<Map<String,Object>> map = responseStr.mapList;
-                if (map.get(0) != null && map.get(0).get("address") != null) {
+                if (map.size() > 0 && map.get(0) != null && map.get(0).get("address") != null) {
                     orderDetail.onNext(map);
                 }
 

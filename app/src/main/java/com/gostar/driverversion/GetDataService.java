@@ -27,4 +27,7 @@ public interface GetDataService
     @POST("api.php")
     Call<StartShiftRequest> startShift(@Body StartShiftRequest startShiftRequest);
 
+    @POST("api.php")
+    Call<OrderRetroClass> orderList(@Body OrderListRequest orderListRequest);
+
 }

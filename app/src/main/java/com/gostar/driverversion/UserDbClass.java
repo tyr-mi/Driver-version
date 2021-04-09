@@ -9,6 +9,8 @@ public class UserDbClass extends RealmObject {
     private String name;
     @Required
     private String username;
+    @Required
+    private String password;
 
     public String getName() {
         return this.name;
@@ -26,4 +28,11 @@ public class UserDbClass extends RealmObject {
         this.username = username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

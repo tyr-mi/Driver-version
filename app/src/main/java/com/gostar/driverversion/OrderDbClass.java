@@ -10,6 +10,10 @@ public class OrderDbClass extends RealmObject {
     @Required
     @Getter
     @Setter
+    public String orderId;
+
+    @Getter
+    @Setter
     public String restaurantLoc;
 
     @Required
@@ -20,44 +24,13 @@ public class OrderDbClass extends RealmObject {
     @Required
     @Getter
     @Setter
-    public String destination2sLoc;
-
-    @Required
-    @Getter
-    @Setter
-    public String destination3sLoc;
-
-    @Required
-    @Getter
-    @Setter
-    public String destination4sLoc;
-
-    @Required
-    @Getter
-    @Setter
-    public String destinationsLoc;
+    public String receiverName;
 
     @Required
     @Getter
     @Setter
     public String destinationsAddress;
 
-    @Required
-    @Getter
-    @Setter
-    public String destinations2Address;
-
-    @Required
-    @Getter
-    @Setter
-    public String destination3sAddress;
-
-    @Required
-    @Getter
-    @Setter
-    public String destination4sAddress;
-
-    @Required
     @Getter
     @Setter
     public String name;
@@ -67,17 +40,6 @@ public class OrderDbClass extends RealmObject {
     @Setter
     public String cost;
 
-    @Required
-    @Getter
-    @Setter
-    public String time;
-
-
-    @Getter
-    @Setter
-    public int num_of_dests;
-
-    @Required
     @Getter
     @Setter
     public String phoneNumber;

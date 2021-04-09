@@ -32,13 +32,13 @@ public class SendLocation
     private Double lon;
 
 
-    SendLocation(String id, String user, Double lat, Double lon)
+    SendLocation(String id, String user, Double lat, Double lon, String pass)
     {
         this.id=id;
         this.user=user;
         this.lat=lat;
         this.lon=lon;
-        this.pass = "admin";
+        this.pass = pass;
     }
 
 }
