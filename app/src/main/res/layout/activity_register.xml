@@ -1,154 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-
+    xmlns:sweet="http://schemas.android.com/apk/res-auto"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="175dp"
         android:layout_height="175dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/ic_motorcycle"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="15dp"/>
-
+        sweet:layout_constraintLeft_toLeftOf="parent"
+        sweet:layout_constraintRight_toRightOf="parent"
+        sweet:layout_constraintTop_toTopOf="parent"/>
     <com.google.android.material.textfield.TextInputLayout
+        android:textColorHint="@android:color/holo_blue_light"
         android:id="@+id/login_name_text_input"
-        style="@style/MainTextInputLayout"
+        android:visibility="visible"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="10dp"
-
         android:hint="نام"
-        android:textColorHint="@android:color/holo_blue_light"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@id/login_username_text_input">
-
+        sweet:layout_constraintBottom_toBottomOf="parent"
+        sweet:layout_constraintBottom_toTopOf="@+id/login_username_text_input"
+        sweet:layout_constraintLeft_toLeftOf="parent"
+        sweet:layout_constraintRight_toRightOf="parent"
+        style="@style/MainTextInputLayout">
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@android:color/black"
             android:id="@+id/login_name_edit_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
-
+            android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
+        android:textColorHint="@android:color/holo_blue_light"
         android:id="@+id/login_username_text_input"
-        style="@style/MainTextInputLayout"
+        android:visibility="visible"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:hint="نام کاربری"
-        android:textColorHint="@android:color/holo_blue_light"
-        android:visibility="visible">
-
+        sweet:layout_constraintBottom_toBottomOf="parent"
+        sweet:layout_constraintLeft_toLeftOf="parent"
+        sweet:layout_constraintRight_toRightOf="parent"
+        sweet:layout_constraintTop_toTopOf="parent"
+        style="@style/MainTextInputLayout">
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@android:color/black"
             android:id="@+id/login_username_edit_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
-
+            android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
-
     <com.google.android.material.textfield.TextInputLayout
+        android:textColorHint="@android:color/holo_blue_light"
         android:id="@+id/login_password_text_input"
-        style="@style/MainTextInputLayout"
+        android:visibility="visible"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/login_username_text_input"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:hint="تلفن تماس"
-        android:textColorHint="@android:color/holo_blue_light"
-        android:visibility="visible">
-
+        sweet:layout_constraintLeft_toLeftOf="parent"
+        sweet:layout_constraintRight_toRightOf="parent"
+        sweet:layout_constraintTop_toBottomOf="@+id/login_username_text_input"
+        style="@style/MainTextInputLayout">
         <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@android:color/black"
             android:id="@+id/login_password_edit_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/black"/>
-
+            android:layout_height="wrap_content"/>
     </com.google.android.material.textfield.TextInputLayout>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/login_button_card_view"
         android:layout_width="170dp"
         android:layout_height="45dp"
-        app:cardBackgroundColor="@android:color/holo_blue_bright"
-        app:layout_constraintTop_toBottomOf="@id/login_password_text_input"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginTop="80dp"
-        app:cardCornerRadius="15dp">
-
+        sweet:cardBackgroundColor="@android:color/holo_blue_bright"
+        sweet:cardCornerRadius="15dp"
+        sweet:layout_constraintLeft_toLeftOf="parent"
+        sweet:layout_constraintRight_toRightOf="parent"
+        sweet:layout_constraintTop_toBottomOf="@+id/login_password_text_input">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <com.google.android.material.textview.MaterialTextView
+                android:textSize="23sp"
+                android:textColor="@android:color/white"
                 android:id="@+id/login_button_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="ثبت نام"
-                android:textColor="@android:color/white"
-                android:textSize="23sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
-
+                sweet:layout_constraintBottom_toBottomOf="parent"
+                sweet:layout_constraintLeft_toLeftOf="parent"
+                sweet:layout_constraintRight_toRightOf="parent"
+                sweet:layout_constraintTop_toTopOf="parent"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_login"
-                app:layout_constraintTop_toTopOf="@id/login_button_text"
-                app:layout_constraintBottom_toBottomOf="@id/login_button_text"
-                app:layout_constraintLeft_toRightOf="@id/login_button_text"
-                android:layout_marginStart="10dp"/>
-
+                android:layout_marginStart="10dp"
+                sweet:layout_constraintBottom_toBottomOf="@+id/login_button_text"
+                sweet:layout_constraintLeft_toRightOf="@+id/login_button_text"
+                sweet:layout_constraintTop_toTopOf="@+id/login_button_text"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
     </androidx.cardview.widget.CardView>
-
-    <RadioGroup
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/login_name_text_input"
-        android:orientation="horizontal"
+    <RadioGroup android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp">
-
+        android:layout_marginTop="100dp"
+        sweet:layout_constraintBottom_toBottomOf="@+id/login_name_text_input"
+        sweet:layout_constraintLeft_toLeftOf="parent"
+        sweet:layout_constraintRight_toRightOf="parent"
+        sweet:layout_constraintTop_toTopOf="parent">
         <RadioButton
-
             android:id="@+id/radioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="حمل نفر" />
-
+            android:text="حمل نفر"/>
         <RadioButton
             android:id="@+id/radioButton2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="حمل غذا" />
+            android:layout_height="wrap_content" android:text="حمل غذا"/>
     </RadioGroup>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

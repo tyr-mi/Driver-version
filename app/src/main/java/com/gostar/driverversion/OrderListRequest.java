@@ -2,15 +2,14 @@ package com.gostar.driverversion;
 
 public class OrderListRequest {
 
-    private int id;
-
+    /* renamed from: id */
+    private int f280id;
+    private String pass;
     private String user;
 
-    private String pass;
-
-    public OrderListRequest(int id, String user, String pass) {
-        this.id = id;
-        this.user = user;
-        this.pass = pass;
+    public OrderListRequest(int id, String user2, String pass2) {
+        this.f280id = id;
+        this.user = user2;
+        this.pass = pass2;
     }
 }

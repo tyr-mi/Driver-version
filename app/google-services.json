@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "797014299299",
+    "project_id": "ariya-304407",
+    "storage_bucket": "ariya-304407.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:797014299299:android:333fe64f515512913ca516",
+        "android_client_info": {
+          "package_name": "com.zanjannovintamadon.driverversion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "797014299299-ed6oc4seblotejaeg8i7h34iu0bj3ovu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zanjannovintamadon.driverversion",
+            "certificate_hash": "c2a2950668e8a1d8d26a7ef006358b68373a14a0"
+          }
+        },
+        {
+          "client_id": "797014299299-5vcmjc3u0m50dnjtuqvom9q9c4ro39qg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfYbWM-IF2eFcy-cIovn9lB1EaUBN9oIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "797014299299-5vcmjc3u0m50dnjtuqvom9q9c4ro39qg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

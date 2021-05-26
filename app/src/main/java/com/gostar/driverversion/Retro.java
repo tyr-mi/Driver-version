@@ -4,7 +4,6 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class Retro {
-
     @SerializedName("status")
     @Expose
     private Integer status;
@@ -13,19 +12,18 @@ public class Retro {
     private String statusMessage;
 
     public Integer getStatus() {
-        return status;
+        return this.status;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setStatus(Integer status2) {
+        this.status = status2;
     }
 
     public String getStatusMessage() {
-        return statusMessage;
+        return this.statusMessage;
     }
 
-    public void setStatusMessage(String statusMessage) {
-        this.statusMessage = statusMessage;
+    public void setStatusMessage(String statusMessage2) {
+        this.statusMessage = statusMessage2;
     }
-
 }

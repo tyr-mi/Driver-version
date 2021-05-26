@@ -1,21 +1,21 @@
 package com.gostar.driverversion;
 
+
 import io.realm.annotations.Required;
 
 public class EndShiftRequest {
-
     @Required
-    private int id;
 
+    /* renamed from: id */
+    private int id;
+    @Required
+    private String pass;
     @Required
     private String user;
 
-    @Required
-    private String pass;
-
-    public EndShiftRequest(int id, String user, String pass) {
+    public EndShiftRequest(int id, String user2, String pass2) {
         this.id = id;
-        this.user = user;
-        this.pass = pass;
+        this.user = user2;
+        this.pass = pass2;
     }
 }

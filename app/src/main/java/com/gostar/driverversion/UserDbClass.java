@@ -1,19 +1,21 @@
 package com.gostar.driverversion;
 
+
 import io.realm.RealmObject;
 import io.realm.annotations.Required;
 
-public class UserDbClass extends RealmObject {
-
+public class UserDbClass extends RealmObject  {
     @Required
     private String name;
     @Required
-    private String username;
-    @Required
     private String password;
+    @Required
+    private String username;
+
+
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -24,12 +26,12 @@ public class UserDbClass extends RealmObject {
         return this.username;
     }
 
-    public  void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {

@@ -111,7 +111,7 @@ public class LocationService extends Service {
     }
 
     private void sendLocationToServer() {
-        SendLocation sendLoc = new SendLocation("7",String.valueOf(MainActivity.username),latitude,longitude,MainActivity.password);
+        SendLocation sendLoc = new SendLocation("7",String.valueOf(MainActivityRefactor.username),latitude,longitude,MainActivityRefactor.password);
         call = service.sendLocation(sendLoc);
         call.enqueue(new Callback<OrderRetroClass>() {
             @Override
